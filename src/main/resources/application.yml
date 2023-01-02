@@ -2,10 +2,10 @@ jwt:
   secret: '[a-zA-Z0-9._]^+$Guidelines89797987forAlphabeticalArraNumeralsandOtherSymbo$'
 
 server:
-  port:8081
-// error:
- //  whitelabel:
- //   enabled: false
+    port: 8081
+    error:
+     whitelabel:
+         enabled: false
 
 spring:
   datasource:
@@ -19,7 +19,17 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
-//  mvc:
- //   throw-exception-if-no-handler-found: true
-//  resources:
- //   add-mappings: false
+        spring:
+          autoconfigure:
+            exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
+            mail:
+              host: smtp.gmail.com
+              port: 587
+              username: tendaikawadza49@gmail.com
+              password: wmosowxsyqtsqeld5
+              protocol: smtp
+              tls: true
+              properties.mail.smtp:
+                auth: true
+                starttls.enable: true
+                ssl.trust: smtp.gmail.com

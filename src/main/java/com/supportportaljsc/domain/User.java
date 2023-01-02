@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import java.io.Serializable;
 
-import java.util.Arrays;
 import java.util.Date;
 
 @Entity
@@ -18,6 +17,7 @@ public class User implements Serializable {
     private String userId;
     private String firstName;
     private String lastName;
+    @Column(unique=true)
     private String username;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
@@ -30,9 +30,7 @@ public class User implements Serializable {
     private String[] authorities;
     private boolean isActive;
     private boolean isNotLocked;
-
     public User(){}
-
     public User(Long id, String userId, String firstName, String lastName, String username, String password, String email, String profileImageUrl, Date lastLoginDate, Date lastLoginDateDisplay, Date joinDate, String role, String[] authorities, boolean isActive, boolean isNotLocked) {
         this.id = id;
         this.userId = userId;
@@ -144,7 +142,7 @@ public class User implements Serializable {
     }
 
     public void setRole(String role) {
-        this.role = role;
+        this.role= role;
     }
 
     public String[] getAuthorities() {
@@ -169,26 +167,5 @@ public class User implements Serializable {
 
     public void setNotLocked(boolean notLocked) {
         isNotLocked = notLocked;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userId='" + userId + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", profileImageUrl='" + profileImageUrl + '\'' +
-                ", lastLoginDate=" + lastLoginDate +
-                ", lastLoginDateDisplay=" + lastLoginDateDisplay +
-                ", joinDate=" + joinDate +
-                ", role='" + role + '\'' +
-                ", authorities=" + Arrays.toString(authorities) +
-                ", isActive=" + isActive +
-                ", isNotLocked=" + isNotLocked +
-                '}';
     }
 }

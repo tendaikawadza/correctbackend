@@ -1,15 +1,14 @@
-package com.supportportaljsc.resource;
+package com.supportportaljsc.service;
+
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ExecutionException;
 
 import static java.util.concurrent.TimeUnit.MINUTES;
-
-
 @Service
 public class LoginAttemptService {
 
@@ -17,8 +16,9 @@ public class LoginAttemptService {
     private static final int ATTEMPT_INCREMENT = 1;
     private LoadingCache<String, Integer> loginAttemptCache;
 
-    public LoginAttemptService(){
 
+
+    public LoginAttemptService() {
         super();
         loginAttemptCache = CacheBuilder.newBuilder().expireAfterWrite(15, MINUTES)
                 .maximumSize(100).build(new CacheLoader<String, Integer>() {
@@ -26,9 +26,8 @@ public class LoginAttemptService {
                         return 0;
                     }
                 });
-
-
     }
+
 
 
     public void evictUserFromLoginAttemptCache(String username) {
@@ -55,7 +54,4 @@ public class LoginAttemptService {
     }
 
 
-
 }
-
-

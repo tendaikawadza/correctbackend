@@ -1,8 +1,6 @@
 package com.supportportaljsc.constant;
 
-import java.nio.file.CopyOption;
-
-public class FileConstant {
+public class FileCostant {
 
     public static final String USER_IMAGE_PATH = "/user/image/";
     public static final String JPG_EXTENSION = "jpg";
@@ -14,15 +12,4 @@ public class FileConstant {
     public static final String FORWARD_SLASH = "/";
     public static final String NOT_AN_IMAGE_FILE = " is not an image file. Please upload an image file";
     public static final String TEMP_PROFILE_IMAGE_BASE_URL = "https://robohash.org/";
-    public static final String NO_USER_FOUND_BY_EMAIL =
-            ".";
-    public static CopyOption REPLACE_EXSTING;
-    public static String EMAIL_ALREADY_EXISTS;
-    public static String FOUND_USER_BY_USERNAME;
-    public static String email;
-    public static String lastName;
 }
-
-
-
-

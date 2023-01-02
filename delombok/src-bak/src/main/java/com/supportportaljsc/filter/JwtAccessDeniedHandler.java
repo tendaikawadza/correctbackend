@@ -1,6 +1,5 @@
 package com.supportportaljsc.filter;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.supportportaljsc.domain.HttpResponse;
 import org.springframework.security.access.AccessDeniedException;
@@ -14,16 +13,14 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import static com.supportportaljsc.constant.SecurityConstant.ACCESS_DENIED_MESSAGE;
-import javax.servlet.http.HttpServletResponse;
-import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-
 @Component
 public class JwtAccessDeniedHandler implements AccessDeniedHandler {
-
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException exception) throws IOException {
+    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException exception) throws IOException, ServletException {
+
+
         HttpResponse httpResponse = new HttpResponse(UNAUTHORIZED.value(), UNAUTHORIZED, UNAUTHORIZED.getReasonPhrase().toUpperCase(), ACCESS_DENIED_MESSAGE);
         response.setContentType(APPLICATION_JSON_VALUE);
         response.setStatus(UNAUTHORIZED.value());
@@ -31,5 +28,6 @@ public class JwtAccessDeniedHandler implements AccessDeniedHandler {
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(outputStream, httpResponse);
         outputStream.flush();
+
     }
 }
